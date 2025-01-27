@@ -5,7 +5,7 @@
 import numpy as np
 
 
-def random_predict(number: int = 1) -> int:
+def random_predict(number: int=1) -> int:
     """Рандомно угадываем число
 
     Args:
@@ -24,7 +24,7 @@ def random_predict(number: int = 1) -> int:
     return count
 
 
-def binary_predict(number: int = 1) -> int:
+def binary_predict(number: int=1) -> int:
     """Отгадываем число методом бинарного поиска
 
     Args:
@@ -35,22 +35,19 @@ def binary_predict(number: int = 1) -> int:
         int: Число попыток
     """
     count = 0
-    st = 0
-    en = 101
-    
+    st = 0 # Левая граница
+    en = 101 # Правая граница
+
     while True:
-        count += 1   
-        half = (en + st) // 2
-        if half == number:
-            return count
+        count += 1
+        half = (en+st) // 2 # Половина [st:en)
+        if half == number: 
+            return count # Возвращаем количество попыток
         elif number < half:
             en = half
         else:
-            st = half 
+            st = half
 
-
-        
-        
 
 def score_game(predict_func) -> int:
     """За какое количство попыток в среднем за 1000 подходов угадывает наш алгоритм
